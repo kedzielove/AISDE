@@ -185,7 +185,16 @@ namespace AISDE
         }
         public static void Main() 
         {
+            Network n = new Network("/home/ogochi/Projects/AISDE1/AISDE1/1.in");
+            foreach (Edge e in n.shortestPath(new Node(1, 0, 0), new Node(4, 6, 1))) {
+                Console.WriteLine(e.GetNodeAId() + " -> " + e.GetNodeBId());
+            }
 
+            Console.WriteLine("-----");
+            foreach (Edge e in n.minimumSpanningTree())
+            {
+                Console.WriteLine(e.GetNodeAId() + " -> " + e.GetNodeBId());
+            }
         }
     }
 }
