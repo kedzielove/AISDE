@@ -8,8 +8,9 @@ namespace AISDE
 {
     class Edge
     {
-        public Node NodeA { get; private set; }
-        public Node NodeB { get; private set; } 
+        public readonly Node NodeA;
+        public readonly Node NodeB;
+
         public Edge(Node nodeA, Node nodeB)
         {
             NodeA = nodeA;
