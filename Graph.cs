@@ -10,12 +10,12 @@ namespace AISDE
     {
         protected Dictionary<Node, List<Edge>> adj;
 
-        public int V { get; protected set; }
-        public int E { get; protected set; }
+        public int NodesCount { get; protected set; }
+        public int EdgesCount { get; protected set; }
 
         public Graph() => adj = new Dictionary<Node, List<Edge>>();
 
-        public void AddEdge(int i, Node from, Node to)
+        public void AddEdge(int index, Node from, Node to)
         {
             List<Edge> existing;
             if (!adj.TryGetValue(from, out existing))
@@ -24,9 +24,27 @@ namespace AISDE
                 adj.Add(from, existing);
             }
 
-            existing.Add(new Edge(i, from, to));
+            existing.Add(new Edge(index, from, to));
         }
 
         public IEnumerable<Node> Neighbors(Node v) => (IEnumerable<Node>)adj[v];
+
+        public IEnumerable<Edge> Edges
+        {
+            get
+            {
+                List<Edge> edges = new List<Edge>();
+                foreach(var node in adj.Keys)
+                {
+                    foreach(var edge in adj[node])
+                    {
+                        if (edge.w.id > edge.v.id)
+                            edges.Add(edge);
+                    }
+                }
+
+                return edges;
+            }
+        }
     }
 }

@@ -8,12 +8,18 @@ namespace AISDE
 {
     class Network
     {
-        /*
-        public Edge[] MST()
+        private Graph tree;
+
+        public Network(Graph tree)
         {
-            return; 
+            this.tree = tree;
         }
 
+        public void MST()
+        {
+
+        }
+        /*
         public Edge[] ShorthestPath(Node from, Node to)
         {
             return;

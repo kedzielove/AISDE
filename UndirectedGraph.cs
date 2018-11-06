@@ -16,17 +16,17 @@ namespace AISDE
                 using (StreamReader file = new StreamReader(path))
                 {
                     string[] firstLine = file.ReadLine().Split(' ');
-                    V = Int32.Parse(firstLine[0]);
-                    E = Int32.Parse(firstLine[1]);
+                    NodesCount = Int32.Parse(firstLine[0]);
+                    EdgesCount = Int32.Parse(firstLine[1]);
 
                     Dictionary<int, Node> vertices = new Dictionary<int, Node>();
-                    for (int i = 0; i < V; i++)
+                    for (int i = 0; i < NodesCount; i++)
                     {
                         int[] node = Array.ConvertAll(file.ReadLine().Split(' '), Int32.Parse);
                         vertices.Add(node[0], new Node(node[0], node[1], node[2]));
                     }
 
-                    for (int i = 0; i < E; i++)
+                    for (int i = 0; i < EdgesCount; i++)
                     {
                         int[] edge = Array.ConvertAll(file.ReadLine().Split(' '), Int32.Parse);
                         AddEdge(edge[0], vertices[edge[1]], vertices[edge[2]]);
