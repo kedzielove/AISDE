@@ -6,20 +6,30 @@ using System.Threading.Tasks;
 
 namespace AISDE
 {
-    class Edge
+    class Edge : IComparable<Edge>
     {
-        public readonly Node NodeA;
-        public readonly Node NodeB;
-
-        public Edge(Node nodeA, Node nodeB)
-        {
-            NodeA = nodeA;
-            NodeB = nodeB;
-        }
+        public readonly int id;
+        public readonly Node v;
+        public readonly Node w;
 
         public double Weight
         {
-            get => Math.Sqrt(Math.Pow(NodeA.X - NodeB.X, 2) + (Math.Pow(NodeA.Y - NodeB.Y, 2)));
+            get => Math.Sqrt(Math.Pow(v.x - w.x, 2) + (Math.Pow(v.y - w.y, 2)));
+        }
+
+        public Edge(int id, Node v, Node w)
+        {
+            this.id = id;
+            this.v = v;
+            this.w = w;
+        }
+
+        public int CompareTo(Edge other)
+        {
+            if (Object.ReferenceEquals(other, null))
+                return 1;
+
+            return Weight.CompareTo(other.Weight);
         }
     }
 }

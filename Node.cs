@@ -12,15 +12,15 @@ namespace AISDE
          * Readonly variables are set once(e.g. in a constructor) and can never be modified.
          * Private fields can be modified, but only from the inside of the class.
          */
-        public readonly int ID;
-        public readonly int X;
-        public readonly int Y;
+        public readonly int id;
+        public readonly int x;
+        public readonly int y;
 
         public Node(int id, int x, int y)
         {
-            ID = id;
-            X = x;
-            Y = y;
+            this.id = id;
+            this.x = x;
+            this.y = y;
         }
 
         #region IEquatable 
@@ -28,17 +28,13 @@ namespace AISDE
         {
             // If parameter is null, return false.
             if (Object.ReferenceEquals(node, null))
-            {
                 return false;
-            }
 
             // Optimization for a reflexivity case
             if (Object.ReferenceEquals(this, node))
-            {
                 return true;
-            }
 
-            return (X == node.X) && (Y == node.Y);
+            return (x == node.x) && (y == node.y);
         }
 
         public override bool Equals(object obj) => Equals(obj as Node);
@@ -62,11 +58,8 @@ namespace AISDE
         }
 
         public static bool operator !=(Node lhs, Node rhs) => !(lhs == rhs);
-      
-        public override int GetHashCode()
-        {
-            return new Tuple<int, int>(X, Y).GetHashCode();
-        }
+
+        public override int GetHashCode() => new Tuple<int, int>(x, y).GetHashCode();
         #endregion
     }
 }
