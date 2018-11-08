@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace AISDE
+namespace AISDEG
 {
     sealed class DirectedGraph : Graph
     {
@@ -37,6 +37,11 @@ namespace AISDE
             {
                 Console.WriteLine("Error during reading the file: " + e.Message);
             }
+        }
+
+        public override void DrawEdges()
+        {
+            
         }
     }
 }

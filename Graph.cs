@@ -3,47 +3,48 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
-namespace AISDE
+namespace AISDEG
 {
     abstract class Graph
     {
-        protected Dictionary<Node, List<Edge>> adj;
-
+        protected Dictionary<Node, List<Edge>> adjacencyLists;
         public int NodesCount { get; protected set; }
         public int EdgesCount { get; protected set; }
 
-        public Graph() => adj = new Dictionary<Node, List<Edge>>();
+        public Graph() => adjacencyLists = new Dictionary<Node, List<Edge>>();
+
+        public List<Edge> this[Node key]
+        {
+            get => adjacencyLists[key];
+        }
+
+        public List<Node> Nodes() => adjacencyLists.Keys.ToList();
 
         public void AddEdge(int index, Node from, Node to)
         {
             List<Edge> existing;
-            if (!adj.TryGetValue(from, out existing))
+            if (!adjacencyLists.TryGetValue(from, out existing))
             {
                 existing = new List<Edge>();
-                adj.Add(from, existing);
+                adjacencyLists.Add(from, existing);
             }
 
             existing.Add(new Edge(index, from, to));
         }
 
-        public IEnumerable<Node> Neighbors(Node v) => (IEnumerable<Node>)adj[v];
+        abstract public void DrawEdges();
 
-        public IEnumerable<Edge> Edges
+        public void DrawNodes(Graphics graphics)
         {
-            get
-            {
-                List<Edge> edges = new List<Edge>();
-                foreach(var node in adj.Keys)
-                {
-                    foreach(var edge in adj[node])
-                    {
-                        if (edge.w.id > edge.v.id)
-                            edges.Add(edge);
-                    }
-                }
+            graphics.TranslateTransform(100, 100);
+            graphics.ScaleTransform(20, 20);
 
-                return edges;
+            float radius = 1;
+            foreach(var node in adjacencyLists.Keys)
+            {
+                graphics.FillEllipse(Brushes.LimeGreen, node.x, node.y, 2*radius, 2*radius);
             }
         }
     }

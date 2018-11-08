@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace AISDE
+namespace AISDEG
 {
-    class UndirectedGraph : Graph
+    sealed class UndirectedGraph : Graph
     {
         public UndirectedGraph(string path)
         {
@@ -38,6 +38,11 @@ namespace AISDE
             {
                 Console.WriteLine("Error during reading the file: " + e.Message);
             }
+        }
+
+        public override void DrawEdges()
+        {
+            
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AISDE
+namespace AISDEG
 {
     class Edge : IComparable<Edge>
     {
@@ -24,10 +24,20 @@ namespace AISDE
             this.w = w;
         }
 
+        public Node Other(Node vertex)
+        {
+            if (vertex == v)
+                return w;
+            else if (vertex == w)
+                return v;
+            else
+                throw new Exception("Wrong edge");
+        }
+
         public int CompareTo(Edge other)
         {
             if (Object.ReferenceEquals(other, null))
-                return 1;
+                return -1;
 
             return Weight.CompareTo(other.Weight);
         }
