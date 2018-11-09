@@ -8,10 +8,6 @@ namespace AISDEG
 {
     class Network
     {
-        //public Graph Map { get; private set; }
-
-        //public Network(Graph map) => Map = map;
-
         /*
          * The equivalent of a minimum spanning tree in a directed graph is called an optimum 
          * branching or a minimum-cost arborescence. The classical algorithm for solving this 
@@ -65,23 +61,18 @@ namespace AISDEG
 
             return minSpanningTree;
         }
-
-        /*
-        public Edge[] SPT(Node from, Node to)
+        public Edge[] SPT(DirectedGraph Map, Node from, Node to)
         {
             Edge[] shortestPathTo = new Edge[Map.NodesCount + 1];
 
             double[] distanceTo = new double[Map.NodesCount + 1];
-            for(int i = 1; i <= Map.NodesCount; i++)
-                distanceTo[i] = Double.PositiveInfinity;
-           
             foreach (var node in Map.Nodes())
                 distanceTo[node.id] = Double.PositiveInfinity;
 
             distanceTo[from.id] = 0.0;
 
             SortedDictionary<Edge, Node> intersection = new SortedDictionary<Edge, Node>();
-            intersection.Add(new Edge(0, from, from), from);
+            intersection.Add(new DirectedEdge(0, from, from), from);
 
             Node closestNode;
             while (intersection.Count > 0)
@@ -89,7 +80,7 @@ namespace AISDEG
                 closestNode = intersection.ElementAt(0).Value;
                 intersection.Remove(intersection.Keys.Min());
 
-                foreach(var edge in Map[closestNode])
+                foreach(DirectedEdge edge in Map[closestNode])
                 {
                     Node neighbour = edge.To();
 
@@ -108,6 +99,5 @@ namespace AISDEG
 
             return shortestPathTo;
         }
-        */
     }
 }

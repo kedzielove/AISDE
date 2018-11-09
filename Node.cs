@@ -23,6 +23,7 @@ namespace AISDEG
             this.y = y;
         }
 
+        //IEqutable interface implementation
         #region IEquatable 
         public bool Equals(Node node)
         {

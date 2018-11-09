@@ -24,6 +24,10 @@ namespace AISDEG
             this.w = w;
         }
 
+        /* IComparable interface implementation
+         * Compares (smaller, greater, equals) values of this and other p(Weight) property
+         */
+        #region IComparable
         public int CompareTo(Edge other)
         {
             if (Object.ReferenceEquals(other, null))
@@ -31,5 +35,6 @@ namespace AISDEG
 
             return Weight.CompareTo(other.Weight);
         }
+        #endregion
     }
 }
