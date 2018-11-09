@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AISDEG
 {
-    class Edge : IComparable<Edge>
+    abstract class Edge : IComparable<Edge>
     {
         public readonly int id;
         public readonly Node v;
@@ -22,16 +22,6 @@ namespace AISDEG
             this.id = id;
             this.v = v;
             this.w = w;
-        }
-
-        public Node Other(Node vertex)
-        {
-            if (vertex == v)
-                return w;
-            else if (vertex == w)
-                return v;
-            else
-                throw new Exception("Wrong edge");
         }
 
         public int CompareTo(Edge other)

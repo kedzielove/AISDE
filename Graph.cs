@@ -10,6 +10,7 @@ namespace AISDEG
     abstract class Graph
     {
         protected Dictionary<Node, List<Edge>> adjacencyLists;
+
         public int NodesCount { get; protected set; }
         public int EdgesCount { get; protected set; }
 
@@ -22,17 +23,7 @@ namespace AISDEG
 
         public List<Node> Nodes() => adjacencyLists.Keys.ToList();
 
-        public void AddEdge(int index, Node from, Node to)
-        {
-            List<Edge> existing;
-            if (!adjacencyLists.TryGetValue(from, out existing))
-            {
-                existing = new List<Edge>();
-                adjacencyLists.Add(from, existing);
-            }
-
-            existing.Add(new Edge(index, from, to));
-        }
+        abstract public void AddEdge(int index, Node v, Node w);
 
         abstract public void DrawEdges();
 
